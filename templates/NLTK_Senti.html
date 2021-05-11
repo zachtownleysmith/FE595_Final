@@ -15,42 +15,43 @@
       </div>
     </nav>
 
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][0]}}</p>
-        <p class="text-white">{{data["Description"][0]}}</p>
-        <p class="text-white">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][0]}}</p>
-        <p class="text-white">URL: {{data["URL"][0]}}</p>
-    </div>
+    <p></p>
 
-    <div class="container-fluid bg-light">
-        <p class="text-black fw-bold">{{data["Title"][1]}}</p>
-        <p class="text-black">{{data["Description"][1]}}</p>
-        <p class="text-black">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][1]}}</p>
-        <p class="text-black">URL: {{data["URL"][1]}}</p>
-    </div>
-
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][2]}}</p>
-        <p class="text-white">{{data["Description"][2]}}</p>
-        <p class="text-white">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][2]}}</p>
-        <p class="text-white">URL: {{data["URL"][2]}}</p>
-    </div>
-
-    <div class="container-fluid bg-light">
-        <p class="text-black fw-bold">{{data["Title"][3]}}</p>
-        <p class="text-black">{{data["Description"][3]}}</p>
-        <p class="text-black">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][3]}}</p>
-        <p class="text-black">URL: {{data["URL"][3]}}</p>
-    </div>
-
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][4]}}</p>
-        <p class="text-white">{{data["Description"][4]}}</p>
-        <p class="text-white">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][4]}}</p>
-        <p class="text-white">URL: {{data["URL"][4]}}</p>
-    </div>
     <form action="/getSentiment" method="get">
         <button type="submit" class="btn btn-dark">New Search</button>
     </form>
+
+    <p></p>
+
+    {% if proper_count == True: %}
+        <div class="container-fluid bg-light">
+            <p class="text-success fw-bold">Successfully Retrieved {{article_count}} Articles!</p>
+            <p></p>
+        </div>
+    {% else: %}
+        <div class="container-fluid bg-light">
+            <p class="text-danger fw-bold">{{bad_count}} is not an integer! Displaying 5 Articles.</p>
+            <p></p>
+        </div>
+    {% endif %}
+
+    {% for x in range(article_count): %}
+        {% if x % 2 == 0: %}
+            <div class="container-fluid bg-secondary">
+                <p class="text-white fw-bold">{{data["Title"][x]}}</p>
+                <p class="text-white">{{data["Description"][x]}}</p>
+                <p class="text-white">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][x]}}</p>
+                <p class="text-white">URL: {{data["URL"][x]}}</p>
+            </div>
+        {% else: %}
+            <div class="container-fluid bg-light">
+                <p class="text-black fw-bold">{{data["Title"][x]}}</p>
+                <p class="text-black">{{data["Description"][x]}}</p>
+                <p class="text-black">{{sentiment}} Sentiment: {{data["Sentiment_NLTK"][x]}}</p>
+                <p class="text-black">URL: {{data["URL"][x]}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+
 </body>
 </html>

@@ -15,92 +15,64 @@
       </div>
     </nav>
 
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][0]}}</p>
-        <p class="text-white">{{data["Description"][0]}}</p>
-        <div class="row">
-          <div class="col text-white">
-            NLTK Sentiment: {{data["Sentiment_NLTK"][0]}}
-          </div>
-          <div class="col text-white">
-            TextBlob Sentiment: {{data["Sentiment_TB"][0]}}
-          </div>
-          <div class="col text-white">
-            Combined Sentiment: {{data["Sentiment_AVG"][0]}}
-          </div>
-        </div>
-        <p class="text-white">URL: {{data["URL"][0]}}</p>
-    </div>
+    <p></p>
 
-    <div class="container-fluid bg-light">
-        <p class="text-black fw-bold">{{data["Title"][1]}}</p>
-        <p class="text-black">{{data["Description"][1]}}</p>
-                <div class="row">
-          <div class="col text-black">
-            NLTK Sentiment: {{data["Sentiment_NLTK"][1]}}
-          </div>
-          <div class="col text-black">
-            TextBlob Sentiment: {{data["Sentiment_TB"][1]}}
-          </div>
-          <div class="col text-black">
-            Combined Sentiment: {{data["Sentiment_AVG"][1]}}
-          </div>
-        </div>
-        <p class="text-black">URL: {{data["URL"][1]}}</p>
-    </div>
-
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][2]}}</p>
-        <p class="text-white">{{data["Description"][2]}}</p>
-                <div class="row">
-          <div class="col text-white">
-            NLTK Sentiment: {{data["Sentiment_NLTK"][2]}}
-          </div>
-          <div class="col text-white">
-            TextBlob Sentiment: {{data["Sentiment_TB"][2]}}
-          </div>
-          <div class="col text-white">
-            Combined Sentiment: {{data["Sentiment_AVG"][2]}}
-          </div>
-        </div>
-        <p class="text-white">URL: {{data["URL"][2]}}</p>
-    </div>
-
-    <div class="container-fluid bg-light">
-        <p class="text-black fw-bold">{{data["Title"][3]}}</p>
-        <p class="text-black">{{data["Description"][3]}}</p>
-                <div class="row">
-          <div class="col text-black">
-            NLTK Sentiment: {{data["Sentiment_NLTK"][3]}}
-          </div>
-          <div class="col text-black">
-            TextBlob Sentiment: {{data["Sentiment_TB"][3]}}
-          </div>
-          <div class="col text-black">
-            Combined Sentiment: {{data["Sentiment_AVG"][3]}}
-          </div>
-        </div>
-        <p class="text-black">URL: {{data["URL"][3]}}</p>
-    </div>
-
-    <div class="container-fluid bg-secondary">
-        <p class="text-white fw-bold">{{data["Title"][4]}}</p>
-        <p class="text-white">{{data["Description"][4]}}</p>
-                <div class="row">
-          <div class="col text-white">
-            NLTK Sentiment: {{data["Sentiment_NLTK"][4]}}
-          </div>
-          <div class="col text-white">
-            TextBlob Sentiment: {{data["Sentiment_TB"][4]}}
-          </div>
-          <div class="col text-white">
-            Combined Sentiment: {{data["Sentiment_AVG"][4]}}
-          </div>
-        </div>
-        <p class="text-white">URL: {{data["URL"][4]}}</p>
-    </div>
     <form action="/getSentiment" method="get">
         <button type="submit" class="btn btn-dark">New Search</button>
     </form>
+
+    <p></p>
+
+    {% if proper_count == True: %}
+        <div class="container-fluid bg-light">
+            <p class="text-success fw-bold">Successfully Retrieved {{article_count}} Articles!</p>
+            <p></p>
+        </div>
+    {% else: %}
+        <div class="container-fluid bg-light">
+            <p class="text-danger fw-bold">{{bad_count}} is not an integer! Displaying 5 Articles.</p>
+            <p></p>
+        </div>
+    {% endif %}
+
+    {% for x in range(article_count): %}
+        {% if x % 2 == 0: %}
+            <div class="container-fluid bg-secondary">
+                <p class="text-white fw-bold">{{data["Title"][x]}}</p>
+                <p class="text-white">{{data["Description"][x]}}</p>
+                    <div class="row">
+                        <div class="col text-white">
+                            NLTK Sentiment: {{data["Sentiment_NLTK"][x]}}
+                        </div>
+                        <div class="col text-white">
+                            TextBlob Sentiment: {{data["Sentiment_TB"][x]}}
+                        </div>
+                        <div class="col text-white">
+                            Combined Sentiment: {{data["Sentiment_AVG"][x]}}
+                        </div>
+                    </div>
+                <p class="text-white">URL: {{data["URL"][x]}}</p>
+            </div>
+
+        {% else: %}
+            <div class="container-fluid bg-light">
+                <p class="text-black fw-bold">{{data["Title"][x]}}</p>
+                <p class="text-black">{{data["Description"][x]}}</p>
+                    <div class="row">
+                        <div class="col text-black">
+                            NLTK Sentiment: {{data["Sentiment_NLTK"][x]}}
+                        </div>
+                        <div class="col text-black">
+                            TextBlob Sentiment: {{data["Sentiment_TB"][x]}}
+                        </div>
+                        <div class="col text-black">
+                            Combined Sentiment: {{data["Sentiment_AVG"][x]}}
+                        </div>
+                    </div>
+                <p class="text-black">URL: {{data["URL"][x]}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+
 </body>
 </html>
