@@ -21,7 +21,7 @@ def sentiment_summary_tb(data_1):
 
 def bing_api_search(search_term, search_num):
     # Setup Request to Bing API and save JSON response
-    subscription_key = "e8dff46a821b4e45990f36ebd17f51f2"
+    subscription_key = "XXXXX"
     search_url = "https://api.bing.microsoft.com/v7.0/news/search"
     headers = {"Ocp-Apim-Subscription-Key": subscription_key}
     params = {"category": "Business", "count": search_num, "q": search_term, "textDecorations": True, "textFormat": "HTML"}
@@ -48,7 +48,7 @@ def bing_api_search(search_term, search_num):
 
 
 if __name__ == "__main__":
-    test=bing_api_search("exxon")
+    test=bing_api_search("exxon", search_num=1)
     print(test['Sentiment_NLTK'])
     print(test['Sentiment_TB'])
     print(test['Sentiment_AVG'])

@@ -18,9 +18,9 @@
 
 <form action="#" method="post">
   <div class="form-group">
-    <label for="company_test">Company to Search</label>
-    <input type="text" class="form-control" id="company_test" placeholder="Company Name" name="company_test">
-      <small id="inputHelp" class="form-text text-muted">Enter the company name for searching recent article sentiment.</small>
+    <label for="ticker_input">Company to Search</label>
+    <input type="text" class="form-control" id="ticker_input" placeholder="Stock Ticker..." name="ticker_input">
+      <small id="inputHelp" class="form-text text-muted">Enter a stock ticker for searching recent company sentiment.</small>
   </div>
   <div>
     <p></p>
@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <label for="article_num">Number of Articles</label>
-    <input type="text" class="form-control" id="article_num" placeholder="5" name="article_cnt">
+    <input type="text" class="form-control" id="article_num" placeholder="..." name="article_cnt">
       <small id="inputHelp" class="form-text text-muted">Enter the desired number of articles to search.</small>
   </div>
 
@@ -38,14 +38,14 @@
 
     <div class="input-group mb-3">
       <label class="input-group-text" for="sentiment_service">Sentiment Package</label>
-      <select class="form-select" id="sentiment_service" name="sentiment_test">
+      <select class="form-select" id="sentiment_service" name="sentiment_input">
         <option selected>Choose...</option>
         <option value="TextBlob">TextBlob</option>
         <option value="NLTK">NLTK</option>
         <option value="Aggregated">Aggregated</option>
       </select>
     </div>
-  <button type="submit" class="btn btn-dark">Get Sentiment!</button>
+  <button type="submit" class="btn btn-warning">Get Sentiment!</button>
 </form>
 
 

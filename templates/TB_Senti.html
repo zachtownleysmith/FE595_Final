@@ -10,30 +10,49 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-info">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">FE595 Company Sentiment Analysis</span>
-      </div>
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">FE595 Company Sentiment Analysis</span>
+        </div>
     </nav>
 
     <p></p>
 
     <form action="/getSentiment" method="get">
-        <button type="submit" class="btn btn-dark">New Search</button>
+        <button type="submit" class="btn btn-warning">New Search</button>
     </form>
 
     <p></p>
 
-    {% if proper_count == True: %}
-        <div class="container-fluid bg-light">
-            <p class="text-success fw-bold">Successfully Retrieved {{article_count}} Articles!</p>
+    {% if proper_ticker == True: %}
+        <div class="container-fluid bg-success">
+            <p class="text-white fw-bold">{{ticker}} is a valid ticker</p>
+            <p class="text-white fw-bold">Searching on "{{company}}"</p>
             <p></p>
         </div>
     {% else: %}
-        <div class="container-fluid bg-light">
-            <p class="text-danger fw-bold">{{bad_count}} is not an integer! Displaying 5 Articles.</p>
+        <div class="container-fluid bg-danger">
+            <p class="text-white fw-bold">{{ticker}} is not a valid ticker!</p>
+            <p class="text-white fw-bold">Searching on "{{company}}"</p>
             <p></p>
         </div>
     {% endif %}
+
+    {% if proper_count == True: %}
+        <div class="container-fluid bg-success">
+            <p class="text-white fw-bold">Successfully Retrieved {{article_count}} Articles!</p>
+            <p></p>
+        </div>
+    {% else: %}
+        <div class="container-fluid bg-danger">
+            <p class="text-white fw-bold">{{bad_count}} is not an integer! Displaying 5 Articles.</p>
+            <p></p>
+        </div>
+    {% endif %}
+
+    <div class="container-fluid bg-info">
+            <p class="text-white fw-bold">Average Sentiment: {{data["Sentiment_TB"].mean(axis=0) | round(4)}}</p>
+            <p></p>
+    </div>
 
     {% for x in range(article_count): %}
         {% if x % 2 == 0: %}
